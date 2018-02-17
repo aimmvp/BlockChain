@@ -1,7 +1,7 @@
 1. VirtualBox 설치
   - OS에 따른 VirtualBox설치(https://www.virtualbox.org/wiki/Downloads)
   - Version 5.2.6 설치
-  - ![Version 5.2.6 설치](http://)
+  - ![Version 5.2.6 설치](https://github.com/aimmvp/BlockChain/blob/master/bc1_1.png)
 2. Ubuntu 설치
 3. Terminal 설치
 
