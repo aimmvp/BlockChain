@@ -112,3 +112,27 @@ $ sudo apt install nodejs-legacy
  ```
  $ sudo ./byfn.sh -m down
  ```
+ 
+## First Application(fabcar)
+### 1. Setting up dev environment
+ - kill any stale or active containers and clear cached networks
+ ```
+ $ docker rm -f $(docker ps -aq)
+ $ docker network prune   # Press 'y' when prompted by the command
+ ```
+ - install and rebuild the Fabric dependencies
+ ```
+ $ cd fabric-samples/fabcar
+ $ sudo npm install
+ $ sudo num rebuild
+ ```
+ - launch a smart contract container for chaincode
+ ```
+ $ ./startFabric.sh
+ ```
+### 2. Enrolling users and...
+ - enrolling the admin user
+  ```
+  $ node enrollAdmin.js
+  ```
+  
