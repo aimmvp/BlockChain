@@ -115,6 +115,7 @@ $ sudo apt install nodejs-legacy
  
 ## First Application(fabcar)
 ### 1. Setting up dev environment
+ - https://hyperledger-fabric.readthedocs.io/en/release/write_first_app.html
  - kill any stale or active containers and clear cached networks
  ```
  $ docker rm -f $(docker ps -aq)
@@ -130,9 +131,18 @@ $ sudo apt install nodejs-legacy
  ```
  $ ./startFabric.sh
  ```
-### 2. Enrolling users and...
+### 2. Register and Enroll admin / user1
  - enrolling the admin user
   ```
   $ node enrollAdmin.js
   ```
-  
+ - register and enroll new user(user1)
+  ```
+  $ s0wnd@ubuntu:~/fabric-samples/fabcar$ node registerUser.js
+  Store path:/home/s0wnd/fabric-samples/fabcar/hfc-key-store
+  Successfully loaded admin from persistence
+  Successfully registered user1 - secret:BEeFoPdbMtVJ
+  Successfully enrolled member user "user1"
+  User1 was successfully registered and enrolled and is ready to intreact with the fabric network
+  ```
+### Querying the Ledger  
