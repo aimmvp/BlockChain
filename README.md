@@ -125,7 +125,7 @@ $ sudo apt install nodejs-legacy
  ```
  $ cd fabric-samples/fabcar
  $ sudo npm install
- $ sudo num rebuild
+ $ sudo npm rebuild
  ```
  - launch a smart contract container for chaincode
  ```
