@@ -138,11 +138,84 @@ $ sudo apt install nodejs-legacy
   ```
  - register and enroll new user(user1)
   ```
-  $ s0wnd@ubuntu:~/fabric-samples/fabcar$ node registerUser.js
+  $ node registerUser.js
   Store path:/home/s0wnd/fabric-samples/fabcar/hfc-key-store
   Successfully loaded admin from persistence
   Successfully registered user1 - secret:BEeFoPdbMtVJ
   Successfully enrolled member user "user1"
   User1 was successfully registered and enrolled and is ready to intreact with the fabric network
   ```
-### Querying the Ledger  
+### Querying the Ledger
+ - https://hyperledger-fabric.readthedocs.io/en/release/write_first_app.html#querying-the-ledger
+ ```
+ $ node query.js
+ Store path:/home/s0wnd/fabric-samples/fabcar/hfc-key-store
+ Successfully loaded user1 from persistence
+ Query has completed, checking results
+ Response is  [{"Key":"CAR0", "Record":{"colour":"blue","make":"Toyota","model":"Prius","owner":"Tomoko"}},{"Key":"CAR1", "Record":{"colour":"red","make":"Ford","model":"Mustang","owner":"Brad"}},{"Key":"CAR2", "Record":{"colour":"green","make":"Hyundai","model":"Tucson","owner":"Jin Soo"}},{"Key":"CAR3", "Record":{"colour":"yellow","make":"Volkswagen","model":"Passat","owner":"Max"}},{"Key":"CAR4", "Record":{"colour":"black","make":"Tesla","model":"S","owner":"Adriana"}},{"Key":"CAR5", "Record":{"colour":"purple","make":"Peugeot","model":"205","owner":"Michel"}},{"Key":"CAR6", "Record":{"colour":"white","make":"Chery","model":"S22L","owner":"Aarav"}},{"Key":"CAR7", "Record":{"colour":"violet","make":"Fiat","model":"Punto","owner":"Pari"}},{"Key":"CAR8", "Record":{"colour":"indigo","make":"Tata","model":"Nano","owner":"Valeria"}},{"Key":"CAR9", "Record":{"colour":"brown","make":"Holden","model":"Barina","owner":"Shotaro"}}]
+ ```
+ - 2번째 client로 user1의 context 사용
+ ```
+ return fabric_client.getUserContext('user1', true);
+ ```
+ - request로 변수없이 queryAllCars 를 호출
+ ```
+ // queryCar chaincode function - requires 1 argument, ex: args: ['CAR4'],
+ // queryAllCars chaincode function - requires no arguments , ex: args: [''],
+ const request = {
+ 	//targets : --- letting this default to the peers assigned to the channel
+   chaincodeId: 'fabcar',
+   fcn: 'queryAllCars',
+   args: ['']
+ };
+ ```
+ - chaincode 확인
+ ```
+ $ cd ~/fabric-samples/chaincode/fabcar
+ ```
+ CAR0 ~ CAR999까지 GetStateByRange 를 이용하여 저장되어 있는 값을 반환
+ (GetStateByRange는 http://bit.ly/2CFi5uv 참고)
+ ```
+ $ vi chaincode.go
+  func (s *SmartContract) queryAllCars(APIstub shim.ChaincodeStubInterface) sc.Response {
+        startKey := "CAR0"
+        endKey := "CAR999"
+
+        resultsIterator, err := APIstub.GetStateByRange(startKey, endKey)
+        if err != nil {
+                return shim.Error(err.Error())
+        }
+        defer resultsIterator.Close()
+
+        // buffer is a JSON array containing QueryResults
+        var buffer bytes.Buffer
+        buffer.WriteString("[")
+ ```
+ - query.js 수정해보기(CAR4의 정보 가지고 오기)
+ ```
+ const query={
+ 	chaincodeId: 'fabcar',
+	fcn: 'queryCar',
+	args: ['CAR4']
+ };
+ ```
+ ```
+ $ node query.js
+ Store path:/home/s0wnd/fabric-samples/fabcar/hfc-key-store
+Successfully loaded user1 from persistence
+Query has completed, checking results
+Response is  {"colour":"black","make":"Tesla","model":"S","owner":"Adriana"}
+ ```
+ 
+ 
+
+
+-----
+* refernce
+ - https://www.virtualbox.org/wiki/Downloads
+ - https://www.ubuntu.com/download/server
+ - https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository
+ - https://nodejs.org/ko/download/package-manager/
+ - https://hyperledger-fabric.readthedocs.io/en/release/samples.html
+ - https://hyperledger-fabric.readthedocs.io/en/release/build_network.html
+ - https://hyperledger-fabric.readthedocs.io/en/release/write_first_app.html
