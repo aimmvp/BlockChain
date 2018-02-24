@@ -173,8 +173,9 @@ $ sudo apt install nodejs-legacy
  ```
  $ cd ~/fabric-samples/chaincode/fabcar
  ```
- CAR0 ~ CAR999까지 GetStateByRange 를 이용하여 저장되어 있는 값을 반환
- (GetStateByRange는 http://bit.ly/2CFi5uv 참고)
+  * CAR0 ~ CAR999까지 GetStateByRange 를 이용하여 저장되어 있는 값을 반환
+  * GetStateByRange는 http://bit.ly/2CFi5uv 참고
+  * 수행가능한 function 확인 가능 : queryCar, initLedger, createCar, queryAllcars, changeCarOwner
  ```
  $ vi chaincode.go
   func (s *SmartContract) queryAllCars(APIstub shim.ChaincodeStubInterface) sc.Response {
@@ -206,8 +207,46 @@ Successfully loaded user1 from persistence
 Query has completed, checking results
 Response is  {"colour":"black","make":"Tesla","model":"S","owner":"Adriana"}
  ```
- 
- 
+### Updating the Ledger
+ - update peocess : proposed --> endorsed --> returned to the application
+ - ```invoke.js``` 수정
+ ```
+ var request = {
+   //targets: let default to the peer assigned to the client
+   chaincodeId: 'fabcar',
+   fcn: 'createCar',
+   args: ['CAR10', 'Chevy', 'Volt', 'Red','Nick'],
+   chainId: 'mychannel',
+   txId: tx_id
+ };
+ ```
+ ```
+ $ node invoke.js
+Store path:/home/s0wnd/fabric-samples/fabcar/hfc-key-store
+Successfully loaded user1 from persistence
+Assigning transaction_id:  71f9120c440f45ab101895b447f5aebdc6c81fab8a3a97f9b141afac0143952c
+Transaction proposal was good
+Successfully sent Proposal and received ProposalResponse: Status - 200, message - "OK"
+info: [EventHub.js]: _connect - options {}
+The transaction has been committed on peer localhost:7053
+Send transaction promise and event listener promise have completed
+Successfully sent transaction to the orderer.
+Successfully committed the change to the ledger by the peer
+ ```
+ - update  결과 확인
+  * ```query.js``` 수정
+  ```
+  const request = {
+    //targets : --- letting this default to the peers assigned to the channel
+   chaincodeId: 'fabcar',
+   fcn: 'queryCar',
+   args: ['CAR10']
+  ```
+  ```
+  $ node query.js
+  ...
+  Response is  {"colour":"Red","make":"Chevy","model":"Volt","owner":"Nick"}
+  ```
 
 
 -----
@@ -219,3 +258,4 @@ Response is  {"colour":"black","make":"Tesla","model":"S","owner":"Adriana"}
  - https://hyperledger-fabric.readthedocs.io/en/release/samples.html
  - https://hyperledger-fabric.readthedocs.io/en/release/build_network.html
  - https://hyperledger-fabric.readthedocs.io/en/release/write_first_app.html
+ - http://bit.ly/2CFi5uv 
