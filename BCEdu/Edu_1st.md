@@ -1,28 +1,36 @@
 ## 개발 환경 세팅(part 1)
 ### 1. VirtualBox 설치
   - OS에 따른 VirtualBox설치(https://www.virtualbox.org/wiki/Downloads)
-  - Version 5.2.6 설치
-    ![Version 5.2.6 설치](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/bc1_1.png)
-  - ssh 접속을 위한 네트워크 설정
-    ![네트워크 어댑터 : NAT, 포트포워딩 설정](https://github.com/aimmvp/BlockChain/blob/master/https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/bc1_2.png)
-	
-### 2. Ubuntu 설치
+  - Version 5.2.8 설치(2018.3.13 기준)
+    ![Version 5.2.8 설치](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/edu1_1.png)
+  
+### 2. 가상머신 만들기 
+  - "새로만들기" 클릭 --> 이름에 "ubuntu" 입력 --> "다음" 클릭
+    ![가상머신 만들기](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/edu1_2.png)
+
+### 3. Ubuntu 설치
   - Ubuntu 16.04.3 LTS Download(https://www.ubuntu.com/download/server)
-    ![Ubuntu Image File Download](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/bc2_1.png)
+    ![Ubuntu Image File Download](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/edu1_3.png)
+  - 가상머신에 다운받은 iso 파일 추가
+    ![iso 파일 추가](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/edu1_4.png)
   - Ubuntu Server 16.04설치
-    ![가상머신 생성](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/bc2_2.png)
-    * 메모리 크기 설정(1024MB) --> 하드디스크(10GB) --> 하드디스크 파일 종류(VDI) --> 물리적 하드 드라이브에 저장(동적할당) --> 파일 위치 및 크기 --> 만들기
-  - Ubuntu 설정
-    * Language(한국어) --> 우분투 서버 설치(I) --> Select a language(예) --> 위치를 선택하십시오(대한민국) --> 키보드 설정(아니요) --> 키보드 설정(Korean) --> 키보드 설정:키보드 배치(Korea) --> 네트워크 설정 --> 사용자 및 암호 설정(시작폴더 암호화 설정:아니요) --> 시계설정(Asia/Seoul 확인 후 예) --> 디스크 파티션 하기(자동-디스크 전체 사용하고 LVM 설정, 디스크 선택, 볼륨 그룹의 크기 입력, 바뀐 점을 디스크에 쓰기) --> 패키지 관리자 설정(HTTP 프록시 정보 : 빈칸) --> tasksel 설정(자동 업데이트 하지 않음) --> 소프트웨어 선택(OpenSSH Server 추가 선택) --> 하드 디스크에 GRUB 부트로더 설치(예)
-    * OpenSSH Server 설치 안했을 경우 재설치하기
+    * Language(한국어) --> 우분투 서버 설치(I) --> Select a language(예) --> 위치를 선택하십시오(대한민국) --> 키보드 설정(아니요) --> 키보드 설정(Korean) --> 키보드 설정:키보드 배치(Korean) --> 네트워크 설정 --> 사용자 및 암호 설정(시작폴더 암호화 설정:아니요) --> 시계설정(Asia/Seoul 확인 후 예) --> 디스크 파티션 하기(자동-디스크 전체 사용하고 LVM 설정, 디스크 선택, 볼륨 그룹의 크기 입력, 바뀐 점을 디스크에 쓰기) --> 패키지 관리자 설정(HTTP 프록시 정보 : 빈칸) --> tasksel 설정(자동 업데이트 하지 않음) --> 소프트웨어 선택(OpenSSH Server 추가 선택) --> 하드 디스크에 GRUB 부트로더 설치(예)
+  - 가상머신 IP 확인 
     ```
-	sudo apt install openssh-client
-	sudo apt install openssh-server
-	```
-	
+    $ ifconfig
+    ```
+    ![IP확인하기](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/edu1_5.png)
+  - ssh 접속을 위한 네트워크 설정
+    ![네트워크 어댑터 : NAT, 포트포워딩 설정](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/edu1_6.png)
+
+
+    
 ### 3. Terminal 설치
   - Windows를 사용 할 경우 putty 등 Terminal 설치 필요
-
+    ```
+	$ sudo apt install openssh-client
+	$ sudo apt install openssh-server
+	```
 ## 개발 환경 세팅(part 2)
 ### 1. GO 설치
   - https://golang.org/doc/install 참고
