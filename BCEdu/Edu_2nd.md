@@ -68,7 +68,7 @@
   ```
   $ docker rm -f $(docker ps -qa) 
   ```
-  2. 기존 사용하던 이미지 파일이 있다면 삭제 (수정하기~~~~~~~~~~~~~~~~~~~~~~~~~)
+  2. 기존 사용하던 이미지 파일이 있다면 삭제
   ```
   $ docker rmi  dev-peer0.org1.example.com-fabcar-1.0-5c906e402ed29f20260ae42283216aa75549c571e2e380f3615826365d8269ba
   ```
@@ -83,7 +83,7 @@
   $ unzip release.zip
   $ mv fabric-samples-release fabric-samples
   ```
-  4. fabric 관련 platform binary, fabric Image 다운로드 및 설
+  4. fabric 관련 platform binary, fabric Image 다운로드 및 설치 
   ```
   $ curl -sSL https://goo.gl/byy2Qj | sudo bash -s 1.0.5
   ```
@@ -101,9 +101,9 @@
   ```
   ![Container List](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/edu2_1.png)
   총 6개의 docker container 가 실행되고 있음.
-  dev-peer0.org1.example.com-fabcar-1.0.*
-  hyperledger/fabric-tools
-  hyperledger/fabric-peer
-  hyperledger/fabric-ca
-  hyperledger/fabric-couchdb
-  hyperledger/fabric-orderer
+    - dev-peer0.org1.example.com-fabcar-1.0.*
+    - hyperledger/fabric-tools
+    - hyperledger/fabric-peer
+    - hyperledger/fabric-ca
+    - hyperledger/fabric-couchdb
+    - hyperledger/fabric-orderer
