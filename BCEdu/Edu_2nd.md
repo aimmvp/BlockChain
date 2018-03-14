@@ -101,6 +101,7 @@
   ```
   ![Container List](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/edu2_1.png)
   총 6개의 docker container 가 실행되고 있음.
+  
     - dev-peer0.org1.example.com-fabcar-1.0.*
     - hyperledger/fabric-tools
     - hyperledger/fabric-peer
