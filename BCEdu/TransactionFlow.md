@@ -1,17 +1,19 @@
-원문 : https://hyperledger-fabric.readthedocs.io/en/release/txflow.html
+원문 : https://hyperledger-fabric.readthedocs.io/en/latest/txflow.html
 
 ## Transaction Flow
-이 문서는 표준자산 교환동안 벌어지는 거래방법의 요약이다. 시나리오는 무를 사고 파는 두 클라이언트(A, B)에 대한 이야기다. 그들은 각각 그들의 거래와 원장과의 상호작용을 통한 네트웍에 peer 를 가진다.
+이 문서는 표준자산 교환동안 벌어지는 거래방법의 요약이다. 무를 사고 파는 두 클라이언트(A, B)에 대한 이야기다. 그들은 각각 거래내용을 보낼 수 있는 네트웍상의 peer 와 원장을 가진다.
 ![](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/tf1.png)
 
 ### 전제
-이 흐름은 채널이 설정되어 있고, 작동중이라고 전제한다. 어플리케이션 사용자는 조직의 CA에 등록하고 enroll했으며, 네트웍에 인증하는데 사용되기 위해 필요한 암호화 자료를 받환 받았다. 
+이 흐름은 채널이 설정되어 있고, 작동중이라고 전제한다. 어플리케이션 사용자는 조직의 CA(인증기관)에 등록 및 권한 부여를 받았으며, 네트웍인증을 위한 필수 암호화 자료를 받았다.
 
-체인코드(무 시장의 초기 상태를 나타내는 키/값 쌍을 포함)는 피어에 설치되고 채널에 인스턴스화된다. 체인코드는 거래지침세트와 무의 합의가격을 정의하는 논리를 포함한다. 이 체인코드에 대한 승인정책도 있고, ```peerA``` 와 ```peerB``` 모두 어떤 거래든지 보증해야 함을 의미한다.
+chaincode(무 시장의 초기 상태를 나타내는 키/값 쌍을 포함)는 peer에 설치되고 채널에 인스턴스화된다. chaincode는 거래방식과 규칙과 합의된 무 가격을 포함한다. endorsement policy은 이 chaincode 에 대해, ```peer A```와 ```peer B``` 둘다 어떤 거래도 보증해야 한다고 설정되어 있다.
 ![](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/tf2.png)
 
 ### 1. Client A 가 트랙젝션 초기화하기
-무슨일이 이루어 지는가? - Client A 는 무의 구입요청을 보내고 있다. 요청은 ClentA와 ClientB를 각각 대표하는 peerA 와 peerB 를 대상으로 한다. 승인정책은 peer 둘 다 어떤 거래를 보증해야함을 말하기 때문에, 요청은 ```peerA``` 와 ```peerB```로 간다.
+무슨일이 이루어 지는가? - Client A 는 무의 구입요청을 한다. 요청은 ClentA와 ClientB를 각각 대표하는 peerA 와 peerB 를 대상으로 한다. endorsement policy는 두 peer 의 어떤 거래도 보증해야 하기 때문에, 요청은 ```peerA``` 와 ```peerB```로 간다.
+
+다음으로, 거래제안이 구성된다. 지원되는 SDK(Node, Java, Python)을 사용하는 어플리케이션은 사용가능한 API 중 하나는 활용하여 트랜잭션 제안을 생성한다. 제안은 자료가 원장을 읽고 쓸 수 있는 체인 함수를 호출하는 요청이다.(예를 들면, 자산에 새로운 key-value 쓰기). SDK 는 심을 사용하여 거래제안을 제대로 설계된 형식(gRPC의 프로토콜 버퍼)으로 패키징하고 사용자의 암호화 인증정보를 가져와 이 거래제안에 고유한 서명을 생성한다. 
 ![](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/tf3.png)
 
 ### 2. 승인받은 peer 의 서명확인 & 거래 이행
