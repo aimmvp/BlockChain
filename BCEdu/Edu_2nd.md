@@ -74,7 +74,7 @@
   ```
   3-1. Hyperledger Fabric sample 소스 가져오기(Git Clone)
   ```
-  $ git clone https://github.com/hyperledger/fabric-sample.git
+  $ git clone https://github.com/hyperledger/fabric-samples.git
   ```
   3-2. Hyperledger Fabric sample 소스 가져오기(Git이 설치되어 있지 않은 경우)
   ```
@@ -85,7 +85,7 @@
   ```
   4. fabric 관련 platform binary, fabric Image 다운로드 및 설치 
   ```
-  $ curl -sSL https://goo.gl/byy2Qj | sudo bash -s 1.0.5
+  $ curl -sSL https://goo.gl/6wtTN5 | sudo bash -s 1.1.0
   ```
   5. 샘플 폴더로 이동
   ```
