@@ -95,7 +95,7 @@
   ```
   $ ./startFabric.sh
   ```
-  7. 현재 실행중인 docker container 목록 확인
+  7. 현재 실행중인 docker container 목록 확인 
   ```
   $ docker ps
   ```
