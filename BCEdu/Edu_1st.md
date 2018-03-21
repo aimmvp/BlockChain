@@ -15,6 +15,7 @@
     ![iso 파일 추가](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/edu1_4.png)
   - Ubuntu Server 16.04설치
     * Language(한국어) --> 우분투 서버 설치(I) --> Select a language(예) --> 위치를 선택하십시오(대한민국) --> 키보드 설정(아니요) --> 키보드 설정(Korean) --> 키보드 설정:키보드 배치(Korean) --> 네트워크 설정 --> 사용자 및 암호 설정(시작폴더 암호화 설정:아니요) --> 시계설정(Asia/Seoul 확인 후 예) --> 디스크 파티션 하기(자동-디스크 전체 사용하고 LVM 설정, 디스크 선택, 볼륨 그룹의 크기 입력, 바뀐 점을 디스크에 쓰기) --> 패키지 관리자 설정(HTTP 프록시 정보 : 빈칸) --> tasksel 설정(자동 업데이트 하지 않음) --> 소프트웨어 선택(OpenSSH Server 추가 선택) --> 하드 디스크에 GRUB 부트로더 설치(예)
+    ![OpenSSH Server ](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/edu1_9.png
   - 가상머신 IP 확인 
     ```
     $ ifconfig
