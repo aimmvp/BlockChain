@@ -260,3 +260,37 @@ up to date in 0.085s
 }  
   ```
  - dependencies 추가 후, 관리자권한 cmd에서 npm install 재수행
+  (npm install 오류 발생시 npm install windows-build-tools 수행 후, npm install 하면 됩니다.)
+ 
+ - Local PC의 myapp 폴더에서 enrollAdmin.js 생성, VM의 fabcar에 있는 enrollAdmin.js 복사하여 사용
+ 
+ - registerUser.js과 query.js 복사
+ 
+ - cmd에서 node enrollAdmin.js 실행
+ (오류 발생시 npm rebuild 한뒤, npm install 재실행 하시면 됩니다.)
+  ``` 
+ 오류 로그
+ C:\myapp>node enrollAdmin.js
+module.js:545
+    throw err;
+    ^
+
+Error: Cannot find module 'fabric-client'
+    at Function.Module._resolveFilename (module.js:543:15)
+    at Function.Module._load (module.js:470:25)
+    at Module.require (module.js:593:17)
+    at require (internal/module.js:11:18)
+    at Object.<anonymous> (C:\myapp\enrollAdmin.js:11:21)
+    at Module._compile (module.js:649:30)
+    at Object.Module._extensions..js (module.js:660:10)
+    at Module.load (module.js:561:32)
+    at tryModuleLoad (module.js:501:12)
+    at Function.Module._load (module.js:493:3)
+  ```
+  ```
+  enrollAdmin.js 정상실행 결과  
+  C:\myapp>node enrollAdmin.js
+ Store path:C:\myapp\hfc-key-store
+Successfully enrolled admin user "admin"
+Assigned the admin user to the fabric client ::{"name":"admin","mspid":"Org1MSP","roles":null,"affiliation":"","enrollmentSecret":"","enrollment":{"signingIdentity":"5d77400bd89e2d76958bad2a2f77b1166d12cb2fb9b8c7070f92bf58f8cea4f2","identity":{"certificate":"-----BEGIN CERTIFICATE-----\nMIICAjCCAaigAwIBAgIUWYZM6CF1ebHl96fy0kHTcJ5fWrQwCgYIKoZIzj0EAwIw\nczELMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNh\nbiBGcmFuY2lzY28xGTAXBgNVBAoTEG9yZzEuZXhhbXBsZS5jb20xHDAaBgNVBAMT\nE2NhLm9yZzEuZXhhbXBsZS5jb20wHhcNMTgwMzIwMTU0NTAwWhcNMTkwMzIwMTU1\nMDAwWjAhMQ8wDQYDVQQLEwZjbGllbnQxDjAMBgNVBAMTBWFkbWluMFkwEwYHKoZI\nzj0CAQYIKoZIzj0DAQcDQgAEi4DYcNcD4XxtW0s7ReP7aditmyFAxpDnzvGjquG5\nAQYqGzK/dXxTXwRQfhywvoGaJBK+H+eNvCfOQPiobBJi5KNsMGowDgYDVR0PAQH/\nBAQDAgeAMAwGA1UdEwEB/wQCMAAwHQYDVR0OBBYEFEPqXDElkJNCcf+UlT9D8jgK\nq5lPMCsGA1UdIwQkMCKAIEI5qg3NdtruuLoM2nAYUdFFBNMarRst3dusalc2Xkl8\nMAoGCCqGSM49BAMCA0gAMEUCIQCxUr6z20YcMgZBq65nLc9YnYVmTzFPOELexqO7\n9qD71QIgJkyEaH7vUGL/d2RBwKX6eTkR5lYxjNUqFo+p5QeZf7U=\n-----END CERTIFICATE-----\n"}}}
+ ```
