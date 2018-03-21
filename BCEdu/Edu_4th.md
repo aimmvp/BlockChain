@@ -1,5 +1,5 @@
 ## chaincode 배포 &SDK 를 활용한 Client 모듈 개발 실습
-### VM 환경에서 수행
+
  - express 설치
   
  ```
@@ -82,19 +82,19 @@ Example app listening on port 3000!
   
  - $ ./startFabric.sh  수행
 
- - $ node main.js 실행 후
+ - $ node main.js 실행 후
 
- - Local PC 에서 browser를 통하여 http://127.0.0.1:3000 주소로 접속
+ - Local PC 에서 browser를 통하여 http://127.0.0.1:3000 주소로 접속
   
- - "hello world!" 출력 되어지면 정상
+ - "hello world!" 출력 되어지면 정상
   ![explorer 결과 ](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/edu4_2.png)
   
- - main.js 파일에서 query 결과를 출력할 수 있도록 소스 수정
-  
- * 수정된 main.js 파일
-  (query.js 파일 참조하여 초기 network 설정과, /query 추가)
+ - main.js 파일에서 query 결과를 출력할 수 있도록 소스 수정   
   
   ```
+  수정된 main.js 파일
+  (query.js 파일 참조하여 초기 network 설정과, /query 추가)
+  
    'use strict';
    var express =  require('express');
    var app = express();
@@ -146,12 +146,8 @@ Example app listening on port 3000!
        args: ['']
      };
      // send the query proposal to the  peer
-     return  channel.queryByChaincode(request);
-   }).then((query_responses) =>  {
-     console.log("Query has completed, checking  results");
+     return  channel.queryByChaincode(request);  
    }).then((query_responses) => {
-     console.log("Query  has completed, checking results");
-     // query_responses could have more  than one  results if there multiple peers were used as targets
      console.log("Query has completed, checking results");
      //  query_responses could have more than one  results if there multiple peers were  used as targets
      if (query_responses && query_responses.length  == 1) {
@@ -171,5 +167,96 @@ Example app listening on port 3000!
  app.listen(3000, function () {
    console.log('Example app listening on port 3000!');
  });
-      
-  ```
+  ```
+ - 변경된 main.js 재실행 한 뒤 Local PC Browser에서 127.0.0.1:3000/query로 접속
+ 
+ - query 결과 출력 되어지면 정상
+ ![query 결과 ](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/edu4_3.png)
+ 
+ - Local에서 개발 가능하도록 VM서버와 연동을 위한 Network Port 추가
+ - 7051, 7053,  7054, 4369, 9100, 5984, 7050 Port 추가
+ ![Network Port추가 ](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/edu4_4.png)
+ 
+ - Local에 nodejs 9.X 버전 설치 (다운로드 페이지 : https://nodejs.org/en/)
+ 
+ - 설치된 nodejs 버전 확인 (nodejs 설치 후 cmd 환경에서 node -v 명령어 수행)
+ ![Local nodejs 버전확인 ](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/edu4_5.png)
+ 
+ - c:\myapp 폴더 생성
+ 
+ - npm 설치(cmd에서 npm init 수행)
+  ```
+  C:\myapp>npm init
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See `npm help json` for definitive documentation on these fields
+and exactly what they do.
+
+Use `npm install <pkg>` afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+package name: (myapp)
+version: (1.0.0)
+description:
+entry point: (index.js)
+test command:
+git repository:
+keywords:
+author:
+license: (ISC)
+About to write to C:\myapp\package.json:
+
+{
+  "name": "myapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
+
+
+Is this ok? (yes)
+  
+  ```
+  
+ - npm install 수행
+  ```
+C:\myapp>npm install
+npm notice created a lockfile as package-lock.json. You should commit this file.
+npm WARN myapp@1.0.0 No description
+npm WARN myapp@1.0.0 No repository field.
+
+up to date in 0.085s
+  
+  ```
+  
+ - package.json에 dependencies 추가
+  ```
+  {
+  "name": "myapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+ "windows-build-tools": "^2.2.1",
+ "crypto": "^1.0.1",
+ "express": "^4.16.2",
+ "fabric-ca-client": "^1.0.2",
+ "fabric-client": "^1.0.2",
+ "grpc": "^1.6.0" 
+  
+  }
+}  
+  ```
+ - dependencies 추가 후, 관리자권한 cmd에서 npm install 재수행
