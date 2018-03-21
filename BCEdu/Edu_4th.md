@@ -294,3 +294,20 @@ Error: Cannot find module 'fabric-client'
 Successfully enrolled admin user "admin"
 Assigned the admin user to the fabric client ::{"name":"admin","mspid":"Org1MSP","roles":null,"affiliation":"","enrollmentSecret":"","enrollment":{"signingIdentity":"5d77400bd89e2d76958bad2a2f77b1166d12cb2fb9b8c7070f92bf58f8cea4f2","identity":{"certificate":"-----BEGIN CERTIFICATE-----\nMIICAjCCAaigAwIBAgIUWYZM6CF1ebHl96fy0kHTcJ5fWrQwCgYIKoZIzj0EAwIw\nczELMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNh\nbiBGcmFuY2lzY28xGTAXBgNVBAoTEG9yZzEuZXhhbXBsZS5jb20xHDAaBgNVBAMT\nE2NhLm9yZzEuZXhhbXBsZS5jb20wHhcNMTgwMzIwMTU0NTAwWhcNMTkwMzIwMTU1\nMDAwWjAhMQ8wDQYDVQQLEwZjbGllbnQxDjAMBgNVBAMTBWFkbWluMFkwEwYHKoZI\nzj0CAQYIKoZIzj0DAQcDQgAEi4DYcNcD4XxtW0s7ReP7aditmyFAxpDnzvGjquG5\nAQYqGzK/dXxTXwRQfhywvoGaJBK+H+eNvCfOQPiobBJi5KNsMGowDgYDVR0PAQH/\nBAQDAgeAMAwGA1UdEwEB/wQCMAAwHQYDVR0OBBYEFEPqXDElkJNCcf+UlT9D8jgK\nq5lPMCsGA1UdIwQkMCKAIEI5qg3NdtruuLoM2nAYUdFFBNMarRst3dusalc2Xkl8\nMAoGCCqGSM49BAMCA0gAMEUCIQCxUr6z20YcMgZBq65nLc9YnYVmTzFPOELexqO7\n9qD71QIgJkyEaH7vUGL/d2RBwKX6eTkR5lYxjNUqFo+p5QeZf7U=\n-----END CERTIFICATE-----\n"}}}
  ```
+ -cmd 에서 resisterUser.js 실행
+ ```
+C:\myapp>node registerUser.js
+Store path:C:\myapp\hfc-key-store
+Successfully loaded admin from persistence
+Successfully registered user1 - secret:MDcuGaFswsph
+Successfully enrolled member user "user1"
+User1 was successfully registered and enrolled and is ready to intreact with the fabric network
+ ```
+ - cmd에서 query.js 실행
+ ```
+C:\myapp>node query.js
+Store path:C:\myapp\hfc-key-store
+Successfully loaded user1 from persistence
+Query has completed, checking results
+Response is  [{"Key":"CAR0", "Record":{"colour":"blue","make":"Toyota","model":"Prius","owner":"Tomoko"}},{"Key":"CAR1", "Record":{"colour":"red","make":"Ford","model":"Mustang","owner":"Brad"}},{"Key":"CAR2", "Record":{"colour":"green","make":"Hyundai","model":"Tucson","owner":"Jin Soo"}},{"Key":"CAR3", "Record":{"colour":"yellow","make":"Volkswagen","model":"Passat","owner":"Max"}},{"Key":"CAR4", "Record":{"colour":"black","make":"Tesla","model":"S","owner":"Adriana"}},{"Key":"CAR5", "Record":{"colour":"purple","make":"Peugeot","model":"205","owner":"Michel"}},{"Key":"CAR6", "Record":{"colour":"white","make":"Chery","model":"S22L","owner":"Aarav"}},{"Key":"CAR7", "Record":{"colour":"violet","make":"Fiat","model":"Punto","owner":"Pari"}},{"Key":"CAR8", "Record":{"colour":"indigo","make":"Tata","model":"Nano","owner":"Valeria"}},{"Key":"CAR9", "Record":{"colour":"brown","make":"Holden","model":"Barina","owner":"Shotaro"}}]
+ ```
