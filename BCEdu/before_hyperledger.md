@@ -34,8 +34,8 @@ http://hyperledger-fabric.readthedocs.io/en/release-1.1/prereqs.html
   - sudo apt-get update
   - sudo apt-get install -y golang-1.9-go
 ### Node.js install
-  - -- curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - --
-  - -- sudo apt-get install -y nodejs --
+  - ~~ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - ~~
+  - ~~ sudo apt-get install -y nodejs ~~
   - curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
   - . ~/.bashrc
   - nvm install 8
