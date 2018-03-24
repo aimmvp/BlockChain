@@ -106,9 +106,9 @@
   (npm install 오류 발생시 npm install windows-build-tools 수행 후, npm install 하면 됩니다.)
   - 오류 발생시 ```$ npm rebuild``` 실행 후 ```$ npm install``` 재실행
  * fabcar 에 있는 enrollAdmin.js, registerUser.js, query.js 복사
-  https://github.com/hyperledger/fabric-samples/blob/release-1.1/fabcar/enrollAdmin.js
-  https://github.com/hyperledger/fabric-samples/blob/release-1.1/fabcar/registerUser.js
-  https://github.com/hyperledger/fabric-samples/blob/release-1.1/fabcar/query.js
+  - https://github.com/hyperledger/fabric-samples/blob/release-1.1/fabcar/enrollAdmin.js
+  - https://github.com/hyperledger/fabric-samples/blob/release-1.1/fabcar/registerUser.js
+  - https://github.com/hyperledger/fabric-samples/blob/release-1.1/fabcar/query.js
  - cmd에서 node enrollAdmin.js 실행
  (오류 발생시 npm rebuild 한뒤, npm install 재실행 하시면 됩니다.)
  ```
