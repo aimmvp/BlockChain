@@ -36,12 +36,6 @@ app.get('/query', function(req, res) {   // 추가
 
 // create the key value store as defined in the fabric-client/config/default.json 'key-value-store' setting
 
-app.get('/', function(req, res) {
-  res.send('Hello World!!');
-});
-app.get('/query', function(req, res) {
-  
-})
 Fabric_Client.newDefaultKeyValueStore({ path: store_path
 }).then((state_store) => {
 	// assign the store to the fabric client
