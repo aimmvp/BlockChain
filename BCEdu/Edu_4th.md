@@ -1,80 +1,44 @@
 ## chaincode 배포 &SDK 를 활용한 Client 모듈 개발 실습
 
- - express 설치
+### 1. express 설치
   
  ```
- $sudo npm install express --save
- ```
- 
- ```
- express 설치 결과
- 
-zing@zing:~/workplace/fabric-samples/fabcar$ sudo npm install express --save
+ $ cd ~/workplace/fabric-samples/fabcar
+ $ sudo npm install express --save
 [sudo] password for zing:
 fabcar@1.0.0 /home/zing/workplace/fabric-samples/fabcar
 └─┬ express@4.16.3
   ├── accepts@1.3.5
   ├── array-flatten@1.1.1
   ├─┬ body-parser@1.18.2
-  │ ├── bytes@3.0.0
-  │ ├─┬ http-errors@1.6.2
-  │ │ ├── depd@1.1.1
-  │ │ └── setprototypeof@1.0.3
-  │ ├── iconv-lite@0.4.19
-  │ └── raw-body@2.3.2
-  ├── content-disposition@0.5.2
-  ├── content-type@1.0.4
-  ├── cookie@0.3.1
-  ├── cookie-signature@1.0.6
-  ├── depd@1.1.2
-  ├── encodeurl@1.0.2
-  ├── escape-html@1.0.3
-  ├── etag@1.8.1
-  ├─┬ finalhandler@1.1.1
-  │ └── unpipe@1.0.0
-  ├── fresh@0.5.2
-  ├── merge-descriptors@1.0.1
-  ├── methods@1.1.2
-  ├─┬ on-finished@2.3.0
-  │ └── ee-first@1.1.1
-  ├── parseurl@1.3.2
-  ├── path-to-regexp@0.1.7
-  ├─┬ proxy-addr@2.0.3
-  │ ├── forwarded@0.1.2
-  │ └── ipaddr.js@1.6.0
-  ├── range-parser@1.2.0
-  ├─┬ send@0.16.2
-  │ ├── destroy@1.0.4
-  │ └── mime@1.4.1
-  ├── serve-static@1.13.2
-  ├── setprototypeof@1.1.0
+   --- 중략 ---
   ├── statuses@1.4.0
   ├─┬ type-is@1.6.16
   │ └── media-typer@0.3.0
   ├── utils-merge@1.0.1
   └── vary@1.1.2
-
 npm WARN fabcar@1.0.0 No repository field.
 ```
-    
- - fabcar 디렉토리에 main.js 파일 생성
- (참조 : expressjs.com/ko/starter/hello-world.html)
- 
-  ``` 
- var express = require('express');var app = express();
+### 2. main.js 파일 생성
+ * 참조 : expressjs.com/ko/starter/hello-world.html
+ ```
+ $ vi main.js
+ ```
+ ```
+ var express = require('express');
+ var app = express();
  app.get('/', function (req, res) {
     res.send('Hello World!');
  });
  app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
- });      
+ });
  ```
-    
- - $ node main.js 수행 후 'Example app listening on port 3000!' 출력되어지면 정상.
-```   
-zing@zing:~/workplace/fabric-samples/fabcar$ node main.js
-Example app listening on port 3000!
-```
+ * 정상 수행 여부 확인
+ ```
+ $ node main.js
+ Example app listening on port 3000!
+ ```
  - Local에서 VM 접근을 위한 VM 설정 추가
   ![VM 3000 Port 추가 ](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/edu4_1.png)
   

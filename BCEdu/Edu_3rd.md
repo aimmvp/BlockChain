@@ -7,11 +7,11 @@ SDK를 설치하고 Blockchain Network에 접근하는 방법 소개하고자 �
 
  - 샘플폴더로 이동
   ```
- $ cd fabric-samples/fabcar
-```
+  $ cd fabric-samples/fabcar
+  ```
  - Hyperledger SDK 설치
  ```
- $ $ npm install
+ $ npm install
 fabcar@1.0.0 /home/hirohi/fabric-samples/fabcar
 ├─┬ fabric-ca-client@1.0.5
 │ ├── bn.js@4.11.8
@@ -215,7 +215,6 @@ fabcar@1.0.0 /home/hirohi/fabric-samples/fabcar
         └─┬ brace-expansion@1.1.11
           ├── balanced-match@1.0.0
           └── concat-map@0.0.1
-
 npm WARN fabcar@1.0.0 No repository field.
 ```
  - Node_modules 폴더 생성된 것 확인
@@ -231,48 +230,46 @@ drwxrwxr-x 145 hirohi hirohi 4096  3월 14 18:04 node_modules
 -rw-rw-r--   1 hirohi hirohi 2606  3월  1 23:25 query.js
 -rw-rw-r--   1 hirohi hirohi 3132  3월  1 23:25 registerUser.js
 -rwxr-xr-x   1 hirohi hirohi 1829  3월  1 23:25 startFabric.sh
-hirohi@ubuntu:~/fabric-samples/fabcar$
- ```
-$ node enrollAdmin.js
 ```
+```
+hirohi@ubuntu:~/fabric-samples/fabcar$
+$ node enrollAdmin.js
 $ node registerUser.js
  ```
 
-  - Blockchain network와 통신할 준비 완료
+- Blockchain network와 통신할 준비 완료
 
- - Admin 등록 과 User 생성/등록 
-	새로운 User를 만들기 위해 CA서버에 먼저 Admin 등록 후, Ledger를 조회하고 업데이트할 사용자를 생성하고 등록함.
+- Admin 등록 과 User 생성/등록 
+ 새로운 User를 만들기 위해 CA서버에 먼저 Admin 등록 후, Ledger를 조회하고 업데이트할 사용자를 생성하고 등록함.
 
-  - BC Network를 통해서 ledger들의 목록 가져오기(query.js 의 내용)
-  - Smart contract 내용 파일 확인 (fabcar.go)
+- BC Network를 통해서 ledger들의 목록 가져오기(query.js 의 내용)
+- Smart contract 내용 파일 확인 (fabcar.go)
 
 	
-
-### 특정 항목 대한 정보 출력
+### 2. 특정 항목에 대한 정보 출력
   - 기존 query.js 파일을 queryCar.js 로 수정하여 request부분의 fnc부분과 args 부분을 수정
   ```
 $ cp query.js queryCar.js
 $ vim queryCar.js
-아래 처럼 수정합니다.
+```
+
+- 아래 처럼 수정합니다.
 
         const request = {
                 chaincodeId: 'fabcar',
                 fcn: 'queryCar',
                 args: ['CAR7']
         };
-		
+```		
 $ node queryCar.js
 Store path:/home/hirohi/fabric-samples/fabcar/hfc-key-store
 Successfully loaded user1 from persistence
 Query has completed, checking results
 Response is  {"colour":"violet","make":"Fiat","model":"Punto","owner":"Pari"}
-  ```
-  - args를 인자로 받도록 수정
-  ```
-아래 처럼 수정합니다.
-
-상단에 아래 추가 및 request args 부분을 수정
-
+```
+- args를 인자로 받도록  아래 처럼 수정합니다.
+  상단에 아래 추가 및 request args 부분을 수정
+```
 var args = process.argv.slice(2);
 
         const request = {
@@ -280,6 +277,8 @@ var args = process.argv.slice(2);
                 fcn: 'queryCar',
                 args: [args[0]]
         };
+```
+```
 $ node queryCar.js
 Store path:/home/hirohi/fabric-samples/fabcar/hfc-key-store
 Successfully loaded user1 from persistence
@@ -299,6 +298,8 @@ Response is  {"colour":"violet","make":"Fiat","model":"Punto","owner":"Pari"}
                 fcn: createCar',
                 args: ['CAR10', ‘KIA’, ‘K7’, ‘Silver’, ‘LEEE’]
         };
+  ```
+  ```
 hirohi@ubuntu:~/fabric-samples/fabcar$ node invoke.js
 Store path:/home/hirohi/fabric-samples/fabcar/hfc-key-store
 Successfully loaded user1 from persistence
@@ -310,6 +311,8 @@ The transaction has been committed on peer localhost:7053
 Send transaction promise and event listener promise have completed
 Successfully sent transaction to the orderer.
 Successfully committed the change to the ledger by the peer
+ ```
+ ```
 hirohi@ubuntu:~/fabric-samples/fabcar$ node queryCar.js CAR10
 Store path:/home/hirohi/fabric-samples/fabcar/hfc-key-store
 Successfully loaded user1 from persistence
@@ -317,26 +320,26 @@ Query has completed, checking results
 Response is  {"colour":"Silver","make":"KIA","model":"K7","owner":"LEE"}
   ```
 
-  2. 변경
-  - 소유자를 변경
+  2. 소유자를 변경
   ```
-/fabric-samples/fabcar$ vim invoke.js
+   /fabric-samples/fabcar$ vim invoke.js
         var request = {
                 chaincodeId: 'fabcar',
                 fcn: ‘changeCarOwner’,
                 args: ['CAR10', ‘Hiro Haha’]
 <중략>
         };
-
+```
+```
 hirohi@ubuntu:~/fabric-samples/fabcar$ node queryCar CAR10
 Store path:/home/hirohi/fabric-samples/fabcar/hfc-key-store
 Successfully loaded user1 from persistence
 Query has completed, checking results
-Response is  {"colour":"Silver","make":"KIA","model":"K7","owner":"Hiro Haha"}
-  ```
+Response is  {"clour":"Silver","make":"KIA","model":"K7","owner":"Hiro Haha"}
+```
   3. App에서 endpoint로 변경요청 후 처리 알림
-  ```
--	invoke.js 수정
+   - invoke.js 수정
+```
 hirohi@ubuntu:~/fabric-samples/fabcar$ vim invoke.js
 var request = {
     targets: targets,
@@ -347,9 +350,8 @@ var request = {
     txId: tx_id
 };
   ```
-
-  ```
 -	queryCar.js 수정
+  ```
 hirohi@ubuntu:~/fabric-samples/fabcar$ vim queryCar.js
 var request = {
     targets: targets,
@@ -361,7 +363,6 @@ var request = {
 };
   ```
   총 6개의 docker container 가 실행되고 있음.
-  
     - dev-peer0.org1.example.com-fabcar-1.0.*
     - hyperledger/fabric-tools
     - hyperledger/fabric-peer
