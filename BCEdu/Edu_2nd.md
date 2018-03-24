@@ -63,7 +63,7 @@ $ sudo apt dist-upgrade
 ```
 $ sudo apt-get update && sudo apt-get -y upgrade
 $ curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
-$ sudo apt-get install nodejs   # install Node.js v9.x
+$ sudo apt-get install nodejs
 ```
 * install nodejs-leday and npm
 ```
@@ -82,39 +82,58 @@ $ sudo npm install npm@3.10.10 -g
   ```
   $ docker rmi  dev-peer0.org1.example.com-fabcar-1.0-5c906e402ed29f20260ae42283216aa75549c571e2e380f3615826365d8269ba
   ```
+  3. Hyperledger Fabric 소스 가져오기
+  ```
+  $ cd ~/workplace
+  ```
   3-1. Hyperledger Fabric sample 소스 가져오기(Git Clone)
   ```
   $ git clone https://github.com/hyperledger/fabric-samples.git
   ```
   3-2. Hyperledger Fabric sample 소스 가져오기(Git이 설치되어 있지 않은 경우)
   ```
-  $ sudo apt-get install unzip
   $ wget https://github.com/hyperledger/fabric-samples/archive/release.zip
   $ unzip release.zip
   $ mv fabric-samples-release fabric-samples
   ```
   4. fabric 관련 platform binary, fabric Image 다운로드 및 설치 
   ```
+  $ cd fabric-samples
   $ curl -sSL https://goo.gl/6wtTN5 | sudo bash -s 1.1.0
   ```
-  5. 샘플 폴더로 이동
+  5. ```peer``` 명령어를 편하게 사용하기 위한 link 생성
   ```
-  $ cd fabric-samples
+  $ mkdir ~/bin
+  $ ln -s $(pwd)/bin/* ~/bin/
+  $ ls -l ~/bin/
+  $ peer
   ```
-  6. 하이퍼레저 네트웍 환경 구성을 위한 쉘 실행
-  ```
-  $ ./startFabric.sh
-  ```
-  7. 현재 실행중인 docker container 목록 확인 
-  ```
-  $ docker ps
-  ```
-  ![Container List](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/edu2_1.png)
-  총 6개의 docker container 가 실행되고 있음.
-  
-    - dev-peer0.org1.example.com-fabcar-1.0.*
-    - hyperledger/fabric-tools
-    - hyperledger/fabric-peer
-    - hyperledger/fabric-ca
-    - hyperledger/fabric-couchdb
-    - hyperledger/fabric-orderer
+
+### 5. Building Your First Network
+http://hyperledger-fabric.readthedocs.io/en/release-1.1/build_network.html
+ ```
+ $ cd ~/workplace/fabric-samples/first-network
+ $ ./byfn.sh --help
+ ```
+
+* Generate Network Artifacts
+ ```
+ $ ./byfn.sh -m generate
+ ```
+* Bring Up the Network
+ ```
+ $ ./byfn.sh -m up
+ docker ps
+ ```
+* ```./byfn.sh -m up``` 실행 시 에러가 발생하면 다음을 다시 실행한다.
+ ```
+ $ ./byfn.sh -m down
+ $ sudo rm -rf crypto-config channel-artifacts/genesis.block
+ $ ./byfn.sh -m generate
+ $ ./byfn.sh -m up
+ ```
+* Bring Down the Network
+ ```
+ $ ./byfn.sh -m down
+ $ docker ps -a
+ ```
