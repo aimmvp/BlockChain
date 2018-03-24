@@ -8,8 +8,8 @@
  * Chaincode query
  */
 
-var express = require('expres');
-var app = express();
+var express = require('express');   // 추가
+var app = express();                // 추가
 var Fabric_Client = require('fabric-client');
 var path = require('path');
 var util = require('util');
@@ -28,6 +28,11 @@ var member_user = null;
 var store_path = path.join(__dirname, 'hfc-key-store');
 console.log('Store path:'+store_path);
 var tx_id = null;
+
+app.get('/', function(req, res) {     // 추가
+	res.send('Hello World');      // 추가
+});
+app.get('/query', function(req, res) {   // 추가
 
 // create the key value store as defined in the fabric-client/config/default.json 'key-value-store' setting
 
@@ -77,7 +82,7 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 			console.error("error from query = ", query_responses[0]);
 		} else {
 			console.log("Response is ", query_responses[0].toString());
-      res.end(query_responses[0].toString());
+                        res.end(query_responses[0].toString());       // 추가
 		}
 	} else {
 		console.log("No payloads were returned from query");
@@ -85,7 +90,7 @@ Fabric_Client.newDefaultKeyValueStore({ path: store_path
 }).catch((err) => {
 	console.error('Failed to query successfully :: ' + err);
 });
-});
-app.listen(3000, function(){
-  console.log('Example app listening on port 3000!');
-});
+});         // 추가
+app.listen(3000, function(){       // 추가
+  console.log('Example app listening on port 3000!');   // 추가
+});  // 추가
