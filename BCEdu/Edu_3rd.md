@@ -287,7 +287,6 @@ Response is  {"colour":"violet","make":"Fiat","model":"Punto","owner":"Pari"}
   ```
 
 ### 3. 추가 및 수정
-  - https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository 참고
   1. 추가
     - 새로운 ledger 추가를 위해서는 invke.js 수정. 
     - createCar 함수를 통해서 CAR10 추가
