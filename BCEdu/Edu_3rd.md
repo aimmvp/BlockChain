@@ -48,7 +48,7 @@ const request = {
 node query.js
 ```
 
-### 2. 추가 및 수정
+### 3. 추가 및 수정
 
 ### Updating the Ledger
 * invoke.js 수정
