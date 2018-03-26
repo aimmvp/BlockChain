@@ -1,4 +1,4 @@
-## chaincode 배포 &SDK 를 활용한 Client 모듈 개발 실습
+## chaincode 배포 & SDK 를 활용한 Client 모듈 개발 실습
 
 ### 1. express 설치  
 ```
@@ -55,7 +55,8 @@
    - Local Browser에서 http://127.0.0.1:3000/query 로 접속
    ![query 결과 ](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/edu4_3.png)
 
-### 5. Local에서 개발을 위한 세팅 --> Local PC 에서 수행
+### 5. Local에서 개발을 위한 세팅
+ * Local PC 에서 수행
  * VirtualMachine 과의 연동을 위한 포트포워딩 추가
   - 7051, 7053,  7054, 4369, 9100, 5984, 7050 Port 추가
  ![](https://github.com/aimmvp/BlockChain/blob/master/BCEdu/img/edu4_4.png)
