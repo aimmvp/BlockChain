@@ -16,9 +16,9 @@
 ## Day 2
 
 ### Hyperledger 간단 통신 테스트
-1. [Hyperledger SDK node modules 설치](http://bit.ly/2ujJKCi)
-2. [특정 항목에 대한 정보 출력](http://bit.ly/2G88V0f)
-3. [추가 및 수정](http://bit.ly/2G9dF5K)
+1. [Hyperledger SDK node modules 설치](https://bit.ly/2Gxe69i)
+2. [조회](https://bit.ly/2DX17sf)
+3. [추가 및 수정](https://bit.ly/2I6iWre)
 
 ### chaincode 배포 & SDK를 이용한 Client모듈 개발 실습
 1. [express 설치](http://bit.ly/2G8V9ux)
