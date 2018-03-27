@@ -5,35 +5,34 @@ http://hyperledger-fabric.readthedocs.io/en/release-1.1/write_first_app.html
 
 ### Setting up your Dev Environment
 ```
-cd ~/workspace/fabric-samples
-cd fabcar
-ls
+$ cd ~/workspace/fabric-samples
+$ cd fabcar
+$ ls
 ```
 ```
-docker rm -f $(docker ps -aq)
-docker network prune
+$ docker rm -f $(docker ps -aq)
+$ docker network prune
 ```
 ### Install the clients & launch the network
 ```
-unset HTTP_PROXY HTTPS_PROXY
-npm install
-./startFabric.sh
-docker ps
+$ npm install
+$ ./startFabric.sh
+$ docker ps
 ```
 ### Enrolling the Admin User
 ```
-node enrollAdmin.js
+$ node enrollAdmin.js
 ```
 ### Register and Enroll user1
 ```
-node registerUser.js
+$ node registerUser.js
 ```
 
 ### 2. 조회
 
 ### Querying the Ledger
 ```
-node query.js
+$ node query.js
 ```
 * query.js 수정
 ```
@@ -45,7 +44,7 @@ const request = {
 };
 ```
 ```
-node query.js
+$ node query.js
 ```
 
 ### 3. 추가 및 수정
@@ -63,7 +62,7 @@ var request = {
 };
 ```
 ```
-node invoke.js
+$ node invoke.js
 ```
 
 * query.js 수정
@@ -76,7 +75,7 @@ const request = {
 };
 ```
 ```
-node query.js
+$ node query.js
 ```
 
 * invoke.js 수정
@@ -91,5 +90,5 @@ var request = {
 };
 ```
 ```
-node invoke.js
+$ node invoke.js
 ```
