@@ -577,8 +577,8 @@ added 69 packages in 38.172s
 ```
 
 ### 5. npm, nodejs 버전 때문에 문제가 생길 경우 
-  - ```npm rebuild```, ```npm install``` 을 수행 후에도 오류가 계속 발생 할 경우 npm cache 삭제가 필요
-  ```
-  sudo npm cache clean -f
-  ```
-  - chache clean 이후 ```npm install``` 실행
+  - npm rebuild, npm install 을 수행 후에도 오류가 계속 발생 할 경우 npm cache 삭제가 필요
+```
+sudo npm cache clean -f
+```
+  - chache clean 이후 ```npm install``` 실행
