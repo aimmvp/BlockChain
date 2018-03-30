@@ -26,3 +26,10 @@
 3. [Local에서 VM접근을 위한 VM설정 추가 및 테스트](http://bit.ly/2GaqJI3)
 4. [query 결과 출력](http://bit.ly/2G9dVBK)
 5. [Local에서 개발을 위한 세팅](http://bit.ly/2G8Li7E)
+
+### 환경설정 이슈정리
+1. [VM에서 apt repository 추가 후 apt update 수행시 404오류 발생](https://bit.ly/2Gkpcv7)
+2. [VM에서 enrolladmin.js 실행시 오류 발생](https://bit.ly/2uzgLuo)
+3. [Windows에서 npm install 수행시 오류 발생](https://bit.ly/2uCbuCe)
+4. [Windows에서 enrolladmin.js 실행시 오류 발생](https://bit.ly/2GI29xE)
+5. [npm, nodejs 버전 때문에 문제가 생길 경우](https://bit.ly/2Gkpimt)
